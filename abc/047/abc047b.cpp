@@ -13,16 +13,16 @@ int main() {
 
         switch (a) {
             case 1:
-                w0 = x;
+                w0 = max(w0, x);
                 break;
             case 2:
-                w = x;
+                w = min(w, x);
                 break;
             case 3:
-                h0 = y;
+                h0 = max(h0, y);
                 break;
             case 4:
-                h = y;
+                h = min(h, y);
                 break;
         }
     }
