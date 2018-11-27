@@ -5,16 +5,17 @@ int main() {
     int n;
     cin >> n;
 
-    int a = n / 100;
-    int b = n - a * 100;
+    int ans = 0;
+    int i = 1;
 
-    if (b > a * 10 + a) {
-        a++;
+    while (int a = n % 10) {
+        ans += (a == 1 ? 9 : 1) * i;
+
+        i *= 10;
+        n /= 10;
     }
 
-    a = a * 100 + a * 10 + a;
-
-    cout << a << endl;
+    cout << ans << endl;
 
     return 0;
 }
