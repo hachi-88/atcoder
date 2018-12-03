@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool is753(int n) {
+bool is753(int i) {
     bool c3, c5, c7;
     c3 = c5 = c7 = false;
 
     do {
-        int num = n % 10;
+        int num = i % 10;
         switch (num) {
             case 3:
                 c3 = true;
@@ -21,22 +21,27 @@ bool is753(int n) {
                 return false;
         }
 
-    } while (n /= 10);
+    } while (i /= 10);
 
     return (c3 && c5 && c7);
 }
 
+int n;
+int ans = 0;
+
+void dfs(long i) {
+    if (i > n) return;
+
+    if (is753(i)) ans++;
+    dfs(10 * i + 3);
+    dfs(10 * i + 5);
+    dfs(10 * i + 7);
+}
+
 int main() {
-    int n;
     cin >> n;
 
-    n = min(n, 777777777);
-
-    int ans = 0;
-
-    for (int i = 357; i <= n; i += 2) {
-        if (is753(i)) ans++;
-    }
+    dfs(0);
 
     cout << ans << endl;
 
