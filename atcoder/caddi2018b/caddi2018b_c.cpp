@@ -11,12 +11,10 @@ int main() {
     }
 
     long ans = 1;
-    long double s = pow(p, 1.0 / n);
 
-    for (long i = 2; i <= s; i++) {
-        if (p % i > 0) {
-            continue;
-        }
+    long i = 1;
+    while (1) {
+        i++;
 
         long ss = 1;
         for (long j = 0; j < n; j++) {
@@ -26,8 +24,8 @@ int main() {
             }
         }
 
-        if (p - ss < 0) {
-            continue;
+        if (ss > p) {
+            break;
         }
 
         if (p % ss == 0) {
