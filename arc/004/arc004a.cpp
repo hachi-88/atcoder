@@ -5,27 +5,24 @@ int main() {
     int n;
     cin >> n;
 
-    int x[n], y[n];
+    int x[n];
+    int y[n];
 
     for (int i = 0; i < n; i++) {
         cin >> x[i] >> y[i];
     }
 
-    int maxlen = 0;
-    int a, b, len;
+    int ans = 0;
+
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
-            a = x[i] - x[j];
-            b = y[i] - y[j];
-            len = a * a + b * b;
-
-            if (len > maxlen) {
-                maxlen = len;
-            }
+            int a = x[i] - x[j];
+            int b = y[i] - y[j];
+            ans = max(ans, a * a + b * b);
         }
     }
 
-    cout << sqrt(maxlen) << endl;
+    cout << sqrt(ans) << endl;
 
     return 0;
 }
