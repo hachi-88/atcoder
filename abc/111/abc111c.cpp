@@ -31,15 +31,46 @@ int main() {
         }
     }
 
-    cout << "m1 ------" << endl;
+    vector<pair<int, int>> v1;
+    vector<pair<int, int>> v2;
     for (auto m : m1) {
-        cout << m.first << " " << m.second << endl;
+        v1.push_back({m.second, m.first});
+    }
+    for (auto m : m2) {
+        v2.push_back({m.second, m.first});
     }
 
-    cout << "m2 ------" << endl;
-    for (auto m : m2) {
-        cout << m.first << " " << m.second << endl;
+    sort(v1.begin(), v1.end(), greater<pair<int, int>>());
+    sort(v2.begin(), v2.end(), greater<pair<int, int>>());
+
+    int ans = 0;
+    if (v1[0].first > v2[0].first) {
+        ans += (n / 2 - v1[0].first);
+        if (v1[0].second != v2[0].second) {
+            ans += (n / 2 - v2[0].first);
+        } else {
+            if (v2.size() > 1) {
+                ans += (n / 2 - v2[1].first);
+            } else {
+                ans += (n / 2);
+            }
+        }
+    } else if (v1[0].first < v2[0].first) {
+        ans += (n / 2 - v2[0].first);
+        if (v1[0].second != v2[0].second) {
+            ans += (n / 2 - v1[0].first);
+        } else {
+            if (v1.size() > 1) {
+                ans += (n / 2 - v1[1].first);
+            } else {
+                ans += (n / 2);
+            }
+        }
+    } else {
+
     }
+
+    cout << ans << endl;
 
     return 0;
 }
