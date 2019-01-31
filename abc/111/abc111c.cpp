@@ -1,16 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    // TODO: WIP
+int f(vector<pair<int, int>> v1, vector<pair<int, int>> v2, int n)
+{
+    int ans = 0;
+    ans += (n / 2 - v1[0].first);
 
+    if (v1[0].second != v2[0].second) {
+        ans += (n / 2 - v2[0].first);
+    } else {
+        if (v2.size() > 1) {
+            ans += (n / 2 - v2[1].first);
+        } else {
+            ans += (n / 2);
+        }
+    }
+
+    return ans;
+}
+
+int main() {
     unordered_map<int, int> m1;
     unordered_map<int, int> m2;
 
     int n;
     cin >> n;
-
-    int v[n];
 
     for (int i = 0; i < n; i++) {
         int _v;
@@ -45,29 +59,13 @@ int main() {
 
     int ans = 0;
     if (v1[0].first > v2[0].first) {
-        ans += (n / 2 - v1[0].first);
-        if (v1[0].second != v2[0].second) {
-            ans += (n / 2 - v2[0].first);
-        } else {
-            if (v2.size() > 1) {
-                ans += (n / 2 - v2[1].first);
-            } else {
-                ans += (n / 2);
-            }
-        }
+        ans += f(v1, v2, n);
     } else if (v1[0].first < v2[0].first) {
-        ans += (n / 2 - v2[0].first);
-        if (v1[0].second != v2[0].second) {
-            ans += (n / 2 - v1[0].first);
-        } else {
-            if (v1.size() > 1) {
-                ans += (n / 2 - v1[1].first);
-            } else {
-                ans += (n / 2);
-            }
-        }
+        ans += f(v2, v1, n);
     } else {
-
+        int a = f(v1, v2, n);
+        int b = f(v2, v1, n);
+        ans += min(a, b);
     }
 
     cout << ans << endl;
